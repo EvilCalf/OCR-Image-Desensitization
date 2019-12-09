@@ -47,4 +47,3 @@ for root, dirs, files in os.walk("labimage/"):
                     data = pd.DataFrame({"name": [cnt], "dir": [root + "/" + file]})
                     data.to_csv("name2file.csv", mode="a", header=False)
                     break
-
