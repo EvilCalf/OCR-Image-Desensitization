@@ -1,13 +1,10 @@
-import cv2
-import pytesseract
-from PIL import Image
-from PIL import ImageDraw
-from PIL import ImageFont
-from PIL import ImageGrab
-import numpy as np
 import os
-import pandas as pd
 
+import cv2
+import numpy as np
+import pandas as pd
+import pytesseract
+from PIL import Image, ImageDraw, ImageFont, ImageGrab
 
 tesseract_cmd = r".\tesseract-ocr\tesseract.exe"
 
