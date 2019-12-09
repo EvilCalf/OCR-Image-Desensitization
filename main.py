@@ -9,14 +9,12 @@ import os
 import pandas as pd
 
 
-tesseract_cmd = r'.\tesseract-ocr\tesseract.exe'
+tesseract_cmd = r".\tesseract-ocr\tesseract.exe"
 
 for root, dirs, files in os.walk("labimage/"):
     for file in files:
         image = Image.open(root + "/" + file)
-        content = pytesseract.image_to_data(
-            image, lang="chi_sim43", output_type="dict"
-        ) 
+        content = pytesseract.image_to_data(image, lang="chi_sim43", output_type="dict")
         for i in range(len(content["text"])):
             if 0 < len(content["text"][i]):
                 if content["text"][i] == "姓名" or (
@@ -39,17 +37,14 @@ for root, dirs, files in os.walk("labimage/"):
                         img = cv2.imread(filename)
                         content = pytesseract.image_to_string(
                             img, lang="chi_sim43", output_type="dict"
-                        ) 
+                        )
                     cnt = content["text"]
                     cnt = cnt.replace(" ", "")
                     cnt = cnt[3:]
                     print(cnt)
                     image.paste((0, 0, 0), (x - 10, y - 10, x + w + 400, y + h + 30))
                     image.save("./Output/" + file)
-                    data = pd.DataFrame({'name': [cnt], 'dir': [root + "/" + file]})
-                    data.to_csv("name2file.csv",mode='a',header=False)
-
+                    data = pd.DataFrame({"name": [cnt], "dir": [root + "/" + file]})
+                    data.to_csv("name2file.csv", mode="a", header=False)
                     break
-
-
 
