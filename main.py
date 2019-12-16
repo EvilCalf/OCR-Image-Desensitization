@@ -18,7 +18,7 @@ for root, dirs, files in os.walk("labimage/"):
         content = pytesseract.image_to_data(image, lang="chi_sim12", output_type="dict")
         for i in range(len(content["text"])):
             if 0 < len(content["text"][i]):
-                if content["text"][i] == "姓名" or content["text"][i] == "姓":
+                if content["text"][i] == "姓名" or content["text"][i] == "姓" or  content["text"][i] =="名":
                     (x, y, w, h) = (
                         content["left"][i],
                         content["top"][i],
@@ -27,7 +27,7 @@ for root, dirs, files in os.walk("labimage/"):
                     )
                     print(x, y, w, h)
                     if imgaetype == 1:
-                        box = (x - 10, y - 10, x + w + 400, y + h + 30)
+                        box = (x - 20, y - 10, x + w + 400, y + h + 30)
                     else:
                         box = (x - 5, y - 5, x + w + 400, y + h + 10)
                     img = image.crop(box)
